@@ -1,6 +1,6 @@
 <?php
 //A
-function crearArray($V = 5, $indice1, $indice2, $operadorIndice, $valor1, $valor2, $operadorValor) {
+function crearArray($indice1, $indice2, $operadorIndice, $valor1, $valor2, $operadorValor, $V = 5) {
     $array = array();
     $indice = rand($indice1, $indice2);
     $valor = rand($valor1, $valor2);
@@ -29,7 +29,7 @@ function crearArray($V = 5, $indice1, $indice2, $operadorIndice, $valor1, $valor
     return $D;
 }
 //B
-$mat = crearArray(6,10,15,"-",100,200,"+");
+$mat = crearArray(10,15,"-",100,200,"+", 6);
 print_r($mat);
 echo "<br>";
 //C
@@ -50,4 +50,4 @@ function mostrarArray($array, $colorBorder="blue", $destacadoColor="orange") {
             echo "</tr>";
             echo "</table>";
 }
-mostrarArray($mat, "yellow", "red");
+mostrarArray($mat);
