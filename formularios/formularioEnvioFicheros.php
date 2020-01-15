@@ -1,7 +1,7 @@
 <html>
     <head></head>
     <body>
-        <form action="tratarDatos.php" method="post" enctype="multipart/form-data">
+        <form action="comprobarDatos.php" method="post" enctype="multipart/form-data">
             <table style="padding: 5px; margin: auto">
                 <tr >
                     <td style="padding: 5px">
