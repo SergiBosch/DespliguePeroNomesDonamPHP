@@ -31,14 +31,14 @@ if (mb_strlen($apellidos, "UTF-8") > $tamApellidos) {
     $apellidosOk = true;
 }
 
-if (mb_strlen($email, "UTF-8") > $tamApellidos) {
+if (mb_strlen($email, "UTF-8") > $tamEmail) {
     print "      <p class=\"aviso\">El email no pueden tener más de $tamEmail caracteres.</p>\n";
     print "\n";
 } else {
     $emailOk = true;
 }
 
-if (mb_strlen($telefono, "UTF-8") > $tamApellidos) {
+if (mb_strlen($telefono, "UTF-8") > $tamTelefono) {
     print "      <p class=\"aviso\">El telefono no pueden tener más de $tamTelefono caracteres.</p>\n";
     print "\n";
 } else {
@@ -48,7 +48,7 @@ if (mb_strlen($telefono, "UTF-8") > $tamApellidos) {
 if ($nombreOk && $apellidosOk && $emailOk && $telefonoOK) {
     if ($id == "") {
         print "      <p>No se ha seleccionado ningún registro.</p>\n";
-    } elseif ($nombre == "" && $apellidos == "") {
+    } elseif ($nombre == "" && $apellidos == "" && $email == "" && $telefono == "") {
         print "      <p>Hay que rellenar al menos uno de los campos. No se ha guardado la modificación.</p>\n";
     } else {
         $consulta = "SELECT COUNT(*) FROM $dbTabla
@@ -66,9 +66,11 @@ if ($nombreOk && $apellidosOk && $emailOk && $telefonoOK) {
             $consulta = "SELECT COUNT(*) FROM $dbTabla
                 WHERE nombre=:nombre
                 AND apellidos=:apellidos
+                AND telefono=:telefono
+                AND email=:email
                 AND id<>:id";
             $result = $db->prepare($consulta);
-            $result->execute(array(":nombre" => $nombre, ":apellidos" => $apellidos,
+            $result->execute(array(":nombre" => $nombre, ":apellidos" => $apellidos,  ":telefono" => $telefono , ":email" => $email,
                  ":id" => $id));
             if (!$result) {
                 print "      <p>Error en la consulta.</p>\n";
@@ -77,11 +79,14 @@ if ($nombreOk && $apellidosOk && $emailOk && $telefonoOK) {
                     . "No se ha guardado la modificación.</p>\n";
             } else {
                 $consulta = "UPDATE $dbTabla
-                    SET nombre=:nombre, apellidos=:apellidos
+                    SET nombre=:nombre, apellidos=:apellidos , telefono=:telefono , email=:email
                     WHERE id=:id";
                 $result = $db->prepare($consulta);
                 if ($result->execute(array(":nombre" => $nombre,
-                    ":apellidos" => $apellidos, ":id" => $id))) {
+                                           ":apellidos" => $apellidos,
+                                           ":telefono" => $telefono,
+                                           ":email" => $email,
+                                           ":id" => $id))) {
                     print "      <p>Registro modificado correctamente.</p>\n";
                 } else {
                     print "      <p>Error al modificar el registro.</p>\n";

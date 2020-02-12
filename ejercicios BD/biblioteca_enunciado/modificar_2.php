@@ -43,11 +43,11 @@ if ($id == "") {
             print "            </tr>\n";
             print "            <tr>\n";
             print "              <td>Email:</td>\n";
-            print "              <td><input type=\"text\" name=\"apellidos\" size=\"$tamEmail\" maxlength=\"$tamEmail\" value=\"$valor[apellidos]\" /></td>\n";
+            print "              <td><input type=\"text\" name=\"email\" size=\"$tamEmail\" maxlength=\"$tamEmail\" value=\"$valor[email]\" /></td>\n";
             print "            </tr>\n";
             print "            <tr>\n";
             print "              <td>Telefono:</td>\n";
-            print "              <td><input type=\"text\" name=\"apellidos\" size=\"$tamTelefono\" maxlength=\"$tamTelefono\" value=\"$valor[apellidos]\" /></td>\n";
+            print "              <td><input type=\"text\" name=\"telefono\" size=\"$tamTelefono\" maxlength=\"$tamTelefono\" value=\"$valor[telefono]\" /></td>\n";
             print "            </tr>\n";
             print "          </tbody>\n";
             print "        </table>\n";
