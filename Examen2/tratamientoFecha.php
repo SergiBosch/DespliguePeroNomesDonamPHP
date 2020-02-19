@@ -1,6 +1,9 @@
 <?php
 
 function tiempoEntreFechas($fechaInicio, $fechaFin, $dato) {
+    if(!$fechaFin){
+        $fechaFin = date("d-m-y");
+    }
     $fechaInicio2 = strtotime($fechaInicio);
     $fechaFin2 = strtotime($fechaFin);
     $diff = abs($fechaFin2 - $fechaInicio2);
