@@ -6,8 +6,8 @@ require_once "biblioteca.php";
 $db = conectaDb();
 cabecera("Buscar 2", MENU_VOLVER);
 
-$nombre    = recoge("nombre");
-$apellidos = recoge("apellidos");
+$codigo    = recoge("nombre");
+$asignatura = recoge("apellidos");
 $email = recoge("email");
 $telefono = recoge("telefono");
 
@@ -17,7 +17,7 @@ $consulta = "SELECT COUNT(*) FROM $dbTabla
     AND email LIKE :email
     AND telefono LIKE :telefono";
 $result = $db->prepare($consulta);
-$result->execute(array(":nombre" => "%$nombre%", ":apellidos" => "%$apellidos%",  ":email" => "%$email%", ":telefono" => "%$telefono%"));
+$result->execute(array(":nombre" => "%$codigo%", ":apellidos" => "%$asignatura%",  ":email" => "%$email%", ":telefono" => "%$telefono%"));
 if (!$result) {
     print "      <p>Error en la consulta.</p>\n";
 } elseif ($result->fetchColumn() == 0) {
@@ -29,7 +29,7 @@ if (!$result) {
         AND email LIKE :email
         AND telefono LIKE :telefono";
     $result = $db->prepare($consulta);
-    $result->execute(array(":nombre" => "%$nombre%", ":apellidos" => "%$apellidos%",  ":email" => "%$email%", ":telefono" => "%$telefono%"));
+    $result->execute(array(":nombre" => "%$codigo%", ":apellidos" => "%$asignatura%",  ":email" => "%$email%", ":telefono" => "%$telefono%"));
     if (!$result) {
         print "      <p>Error en la consulta.</p>\n";
     } else {

@@ -6,28 +6,28 @@ require_once "biblioteca.php";
 $db = conectaDb();
 cabecera("Añadir 2", MENU_VOLVER);
 
-$nombre      = recoge("nombre");
-$apellidos   = recoge("apellidos");
+$codigo      = recoge("nombre");
+$asignatura   = recoge("apellidos");
 $email   = recoge("email");
 $telefono   = recoge("telefono");
 
-$nombreOk    = false;
-$apellidosOk = false;
+$codigoOk    = false;
+$asignaturaOk = false;
 $emailOk = false;
 $telefonoOK = false;
 
-if (mb_strlen($nombre, "UTF-8") > $tamNombre) {
+if (mb_strlen($codigo, "UTF-8") > $tamNombre) {
     print "      <p class=\"aviso\">El nombre no puede tener más de $tamNombre caracteres.</p>\n";
     print "\n";
 } else {
-    $nombreOk = true;
+    $codigoOk = true;
 }
 
-if (mb_strlen($apellidos, "UTF-8") > $tamApellidos) {
+if (mb_strlen($asignatura, "UTF-8") > $tamApellidos) {
     print "      <p class=\"aviso\">Los apellidos no pueden tener más de $tamApellidos caracteres.</p>\n";
     print "\n";
 } else {
-    $apellidosOk = true;
+    $asignaturaOk = true;
 }
 
 if (mb_strlen($email, "UTF-8") > $tamApellidos) {
@@ -44,8 +44,8 @@ if (mb_strlen($telefono, "UTF-8") > $tamApellidos) {
     $telefonoOK = true;
 }
 
-if ($nombreOk && $apellidosOk && $emailOk && $telefonoOK) {
-    if ($nombre == "" && $apellidos == "" && $email == "" && $telefono == "") {
+if ($codigoOk && $asignaturaOk && $emailOk && $telefonoOK) {
+    if ($codigo == "" && $asignatura == "" && $email == "" && $telefono == "") {
         print "      <p>Hay que rellenar al menos uno de los campos. No se ha guardado el registro.</p>\n";
     } else {
         $consulta = "SELECT COUNT(*) FROM $dbTabla";
@@ -62,7 +62,7 @@ if ($nombreOk && $apellidosOk && $emailOk && $telefonoOK) {
                 AND email=:email
                 AND telefono=:telefono";
             $result = $db->prepare($consulta);
-            $result->execute(array(":nombre" => $nombre, ":apellidos" => $apellidos, ":email" => $email, ":telefono" => $telefono));
+            $result->execute(array(":nombre" => $codigo, ":apellidos" => $asignatura, ":email" => $email, ":telefono" => $telefono));
             if (!$result) {
                 print "      <p>Error en la consulta.</p>\n";
             } elseif ($result->fetchColumn() > 0) {
@@ -72,10 +72,10 @@ if ($nombreOk && $apellidosOk && $emailOk && $telefonoOK) {
                     (nombre, apellidos, email, telefono)
                     VALUES (:nombre, :apellidos, :email, :telefono)";
                 $result = $db->prepare($consulta);
-                if ($result->execute(array(":nombre" => $nombre, ":apellidos" => $apellidos, ":email" => $email, ":telefono" => $telefono))) {
-                    print "      <p>Registro <strong>$nombre $apellidos</strong> creado correctamente.</p>\n";
+                if ($result->execute(array(":nombre" => $codigo, ":apellidos" => $asignatura, ":email" => $email, ":telefono" => $telefono))) {
+                    print "      <p>Registro <strong>$codigo $asignatura</strong> creado correctamente.</p>\n";
                 } else {
-                    print "      <p>Error al crear el registro <strong>$nombre $apellidos</strong>.</p>\n";
+                    print "      <p>Error al crear el registro <strong>$codigo $asignatura</strong>.</p>\n";
                 }
             }
         }

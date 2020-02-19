@@ -6,13 +6,13 @@
     <body>
         <?php 
             $nombreCompleto= "Bosch Bosch, Sergi";
-            $apellidos = explode(",", $nombreCompleto)[0];
-            $nombre = explode(",", $nombreCompleto)[1];
-            echo "Los apellidos son: $apellidos";
+            $asignatura = explode(",", $nombreCompleto)[0];
+            $codigo = explode(",", $nombreCompleto)[1];
+            echo "Los apellidos son: $asignatura";
             echo "<br>";
-            echo "El nombre es: $nombre";
+            echo "El nombre es: $codigo";
             echo "<br>";
-            echo "El nombre y apellidos son: $nombre $apellidos";
+            echo "El nombre y apellidos son: $codigo $asignatura";
             echo "<br>";
             print_r(explode(",", $nombreCompleto));
             echo "<br>";

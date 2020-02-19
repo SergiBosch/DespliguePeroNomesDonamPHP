@@ -6,29 +6,29 @@ require_once "biblioteca.php";
 $db = conectaDb();
 cabecera("Modificar 3", MENU_VOLVER);
 
-$nombre      = recoge("nombre");
-$apellidos   = recoge("apellidos");
+$codigo      = recoge("nombre");
+$asignatura   = recoge("apellidos");
 $email   = recoge("email");
 $telefono   = recoge("telefono");
 $id          = recoge("id");
 
-$nombreOk    = false;
-$apellidosOk = false;
+$codigoOk    = false;
+$asignaturaOk = false;
 $emailOk = false;
 $telefonoOK = false;
 
-if (mb_strlen($nombre, "UTF-8") > $tamNombre) {
+if (mb_strlen($codigo, "UTF-8") > $tamNombre) {
     print "      <p class=\"aviso\">El nombre no puede tener más de $tamNombre caracteres.</p>\n";
     print "\n";
 } else {
-    $nombreOk = true;
+    $codigoOk = true;
 }
 
-if (mb_strlen($apellidos, "UTF-8") > $tamApellidos) {
+if (mb_strlen($asignatura, "UTF-8") > $tamApellidos) {
     print "      <p class=\"aviso\">Los apellidos no pueden tener más de $tamApellidos caracteres.</p>\n";
     print "\n";
 } else {
-    $apellidosOk = true;
+    $asignaturaOk = true;
 }
 
 if (mb_strlen($email, "UTF-8") > $tamEmail) {
@@ -45,10 +45,10 @@ if (mb_strlen($telefono, "UTF-8") > $tamTelefono) {
     $telefonoOK = true;
 }
 
-if ($nombreOk && $apellidosOk && $emailOk && $telefonoOK) {
+if ($codigoOk && $asignaturaOk && $emailOk && $telefonoOK) {
     if ($id == "") {
         print "      <p>No se ha seleccionado ningún registro.</p>\n";
-    } elseif ($nombre == "" && $apellidos == "" && $email == "" && $telefono == "") {
+    } elseif ($codigo == "" && $asignatura == "" && $email == "" && $telefono == "") {
         print "      <p>Hay que rellenar al menos uno de los campos. No se ha guardado la modificación.</p>\n";
     } else {
         $consulta = "SELECT COUNT(*) FROM $dbTabla
@@ -70,7 +70,7 @@ if ($nombreOk && $apellidosOk && $emailOk && $telefonoOK) {
                 AND email=:email
                 AND id<>:id";
             $result = $db->prepare($consulta);
-            $result->execute(array(":nombre" => $nombre, ":apellidos" => $apellidos,  ":telefono" => $telefono , ":email" => $email,
+            $result->execute(array(":nombre" => $codigo, ":apellidos" => $asignatura,  ":telefono" => $telefono , ":email" => $email,
                  ":id" => $id));
             if (!$result) {
                 print "      <p>Error en la consulta.</p>\n";
@@ -82,8 +82,8 @@ if ($nombreOk && $apellidosOk && $emailOk && $telefonoOK) {
                     SET nombre=:nombre, apellidos=:apellidos , telefono=:telefono , email=:email
                     WHERE id=:id";
                 $result = $db->prepare($consulta);
-                if ($result->execute(array(":nombre" => $nombre,
-                                           ":apellidos" => $apellidos,
+                if ($result->execute(array(":nombre" => $codigo,
+                                           ":apellidos" => $asignatura,
                                            ":telefono" => $telefono,
                                            ":email" => $email,
                                            ":id" => $id))) {

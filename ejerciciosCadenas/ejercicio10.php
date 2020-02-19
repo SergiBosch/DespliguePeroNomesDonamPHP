@@ -6,13 +6,13 @@
     <body>
         <?php
         $nombreCompleto= "Bosch Bosch, Sergi";
-            $apellidos = substr($nombreCompleto,0,11);
-            $nombre = substr($nombreCompleto,-5,5);
-            echo "Los apellidos son: $apellidos";
+            $asignatura = substr($nombreCompleto,0,11);
+            $codigo = substr($nombreCompleto,-5,5);
+            echo "Los apellidos son: $asignatura";
             echo "<br>";
-            echo "El nombre es: $nombre";
+            echo "El nombre es: $codigo";
             echo "<br>";
-            echo "El nombre y apellidos son: $nombre $apellidos";
+            echo "El nombre y apellidos son: $codigo $asignatura";
             echo "<br>";
         ?>
     </body>
